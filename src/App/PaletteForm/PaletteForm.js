@@ -10,12 +10,13 @@ import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
+import {ChromePicker} from 'react-color';
 
 import styles from "./PaletteFormStyles";
 
 class PaletteForm extends Component {
   static defaultProps = {
-    
+
   };
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ class PaletteForm extends Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
     return (
       <div className={classes.root}>
@@ -74,7 +75,42 @@ class PaletteForm extends Component {
             </IconButton>
           </div>
           <Divider />
+          <Typography variant="h4" >
+            Design Your Palette
+          </Typography>
+          <div>
+            <Button 
+              variant="contained" 
+              color="secondary" 
+            >
+              Clear Palette
+            </Button>
+            <Button 
+              variant="contained" 
+              color="primary" 
+            >
+              Ramdon Color
+            </Button>
+          </div>
+          <ChromePicker
+            color="green"
+            onChangeComplete={(newColor) => console.log(newColor)}
+          
+          />
+          <Button
+            variant="contained"
+            color="primary"
+          >
+            Add Color
+          </Button>
         </Drawer>
+        <main
+          className={classNames(classes.content, {
+          [classes.contentShift]: open
+          })}
+        >
+          <div className={classes.drawerHeader} />
+        </main>
       </div>
     );
   }
