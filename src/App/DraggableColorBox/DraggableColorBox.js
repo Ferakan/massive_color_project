@@ -1,19 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { SortableElement } from "react-sortable-hoc";
 
 import styles from "./DraggableColorBoxStyles";
 
-class DraggableColorBox extends Component {
-  render() {
-    const { classes, name } = this.props;
-    return (
-      <div className={classes.root} >
-        <div className={classes.boxContent}>
+const DraggableColorBox = SortableElement(({ classes, name, deleteColorBox }) => {
+  return (
+    <div className={classes.root} >
+      <div className={classes.boxContent}>
+        <span>
           {name}
-        </div>
+        </span>
+        <DeleteIcon 
+          className={classes.deleteIcon} 
+          onClick={deleteColorBox}
+        />
       </div>
-    )
-  }
-}
+    </div>
+  )
+});
 
 export default withStyles(styles)(DraggableColorBox);

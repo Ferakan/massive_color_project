@@ -1,3 +1,5 @@
+import chroma from 'chroma-js';
+
 export default {
   root: {
     width: "20%",
@@ -7,16 +9,25 @@ export default {
     position: "relative",
     cursor: "pointer",
     marginBottom: "-4px",
-    backgroundColor: props => props.color
+    backgroundColor: props => props.color,
+    "&:hover svg": {
+      transform: "scale(1.5)"
+    }
   },
   boxContent: {
+    color: props => 
+      chroma(props.color).luminance() <= 0.08 ? "white" : "black",
     position: "absolute",
-    width: "100%",
+    width: "93%",
     left: "0px",
     bottom: "0px",
     padding: "10px",
-    color: "black",
     letterSpacing: "1px",
     textTransform: "uppercase",
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  deleteIcon: {
+    transition: "all 0.3s ease-in-out"
   }
 }
