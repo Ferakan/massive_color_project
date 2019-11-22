@@ -21,7 +21,7 @@ import styles from "./PaletteFormStyles";
 
 class PaletteForm extends Component {
   static defaultProps = {
-
+    maxColors: 20
   };
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class PaletteForm extends Component {
       open: true,
       currentColor: "teal",
       newColorName: "",
-      colors: [],
+      colors: this.props.palettes[0].colors,
       newPaletteName: ""
     }
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
@@ -37,6 +37,8 @@ class PaletteForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.deleteColorBox = this.deleteColorBox.bind(this);
+    this.clearPalette = this.clearPalette.bind(this);
+    this.ramdonColor = this.ramdonColor.bind(this);
   };
 
   componentDidMount() {
@@ -106,9 +108,22 @@ class PaletteForm extends Component {
     }));
   };
 
+  clearPalette() {
+    this.setState({ colors: [] })
+  }
+
+  ramdonColor() {
+    const allColors = this.props.palettes.map(p => p.colors).flat();
+    var rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    this.setState({ colors: [...this.state.colors, randomColor] });
+  }
+
   render() {
-    const { classes } = this.props;
-    const { open } = this.state;
+    const { classes, maxColors } = this.props;
+    const { open, colors } = this.state;
+    const paletteIsFull = colors.length >= maxColors;
+
     return (
       <div className={classes.root}>
         <AppBar
@@ -185,15 +200,18 @@ class PaletteForm extends Component {
           <div>
             <Button 
               variant="contained" 
-              color="secondary" 
+              color="secondary"
+              onClick={this.clearPalette} 
             >
               Clear Palette
             </Button>
             <Button 
               variant="contained" 
-              color="primary" 
+              color="primary"
+              onClick={this.ramdonColor}
+              disabled={paletteIsFull} 
             >
-              Ramdon Color
+              {paletteIsFull ? "Palette Full" : "Ramdon Color"}
             </Button>
           </div>
           <ChromePicker
@@ -221,9 +239,11 @@ class PaletteForm extends Component {
               variant="contained"
               type="submit"
               color="primary"
-              style={{backgroundColor:this.state.currentColor}}
+              style={{backgroundColor:
+                paletteIsFull ? "rgba(0, 0, 0, 0.12)" : this.state.currentColor}}
+              disabled={paletteIsFull}
             >
-              Add Color
+              {paletteIsFull ? "Palette Full" : "Add Color"}
             </Button>
           </ValidatorForm>
         </Drawer>
@@ -234,7 +254,7 @@ class PaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           <DraggableColorList 
-            colors={this.state.colors} 
+            colors={colors} 
             deleteColorBox={this.deleteColorBox}
             axis="xy"
             onSortEnd={this.onSortEnd}
