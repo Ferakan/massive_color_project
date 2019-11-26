@@ -93,7 +93,6 @@ class PaletteForm extends Component {
       <div className={classes.root}>
         <PaletteFormNav 
           open={open}
-          classes={classes}
           palettes={palettes}
           handleDrawerOpen={this.handleDrawerOpen}
           handleSave={this.handleSave} 
@@ -114,18 +113,20 @@ class PaletteForm extends Component {
           </div>
           <Divider />
           <div className={classes.container}>
-            <Typography variant="h4" >
+            <Typography variant="h4" gutterBottom >
               Design Your Palette
             </Typography>
             <div className={classes.buttons}>
-              <Button 
+              <Button
+                className={classes.button} 
                 variant="contained" 
                 color="secondary"
                 onClick={this.clearPalette} 
               >
                 Clear Palette
               </Button>
-              <Button 
+              <Button
+                className={classes.button} 
                 variant="contained" 
                 color="primary"
                 onClick={this.randomColor}

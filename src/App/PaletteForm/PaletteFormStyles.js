@@ -5,15 +5,14 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
+   drawer: {
     width: drawerWidth,
     flexShrink: 0,
   },
   drawerPaper: {
+    display: "flex",
     width: drawerWidth,
+    alignItems: "center"
   },
   drawerHeader: {
     display: 'flex',
@@ -47,7 +46,10 @@ const styles = theme => ({
     alignItems: "center"
   },
   buttons: {
-
+    width: "100%"
+  },
+  button: {
+    width: "50%"
   }
 });
 

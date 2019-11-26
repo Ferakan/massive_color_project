@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {ChromePicker} from 'react-color';
@@ -59,11 +58,16 @@ class ColorPickerForm extends Component {
         <ChromePicker
           color={this.state.currentColor}
           onChangeComplete={this.updateCurrentColor}
+          className={classes.picker}
         />
         <ValidatorForm onSubmit={this.handleAddColor}>
-          <TextValidator 
+          <TextValidator
+            className={classes.colorNameInput} 
             value={this.state.newColorName}
+            placeholder="Color Name"
             name="newColorName"
+            variant="filled"
+            margin="normal"
             onChange={this.handleChange}
             validators={[
               "required", 
@@ -77,6 +81,7 @@ class ColorPickerForm extends Component {
             ]}
           />
           <Button
+            className={classes.addColor}
             variant="contained"
             type="submit"
             color="primary"
