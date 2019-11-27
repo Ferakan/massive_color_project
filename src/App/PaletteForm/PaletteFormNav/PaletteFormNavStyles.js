@@ -14,7 +14,8 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -28,7 +29,13 @@ const styles = theme => ({
     marginRight: theme.spacing(2),
   },
   navBtns: {
-
+    marginRight: "1rem",
+    "& a": {
+      textDecoration: "none"
+    }
+  },
+  button: {
+    margin: "0 0.5rem",
   },
 });
 

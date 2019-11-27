@@ -7,8 +7,9 @@ import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Link } from 'react-router-dom';
+
+import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
 
 import styles from './PaletteFormNavStyles';
 
@@ -16,17 +17,11 @@ class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newPaletteName: ""
+      newPaletteName: "",
+      formOpen: false
     }
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule('paletteNameUnique', (value) => 
-      this.props.palettes.every(
-        ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
+    this.showForm = this.showForm.bind(this);
   }
 
   handleChange(evt) {
@@ -35,9 +30,14 @@ class PaletteFormNav extends Component {
     });
   }
 
+  showForm() {
+    this.setState(prevState => ({
+      formOpen: !prevState.formOpen
+    }));
+  }
+
   render() {
-    const { classes, open, handleSave, handleDrawerOpen } = this.props;
-    const { newPaletteName } = this.state;
+    const { classes, open, handleDrawerOpen, palettes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar
@@ -62,39 +62,33 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <ValidatorForm onSubmit={() => handleSave(newPaletteName)}>
-              <TextValidator 
-                value={newPaletteName}
-                name="newPaletteName"
-                label="Palette Name"
-                onChange={this.handleChange}
-                validators={[
-                  "required",
-                  "paletteNameUnique"
-                ]}
-                errorMessages={[
-                  "Enter Palette Name",
-                  "Palette Name Already Used"
-                ]}
-              />
-              <Button 
-                variant="contained" 
-                color="primary"
-                type="submit"
-              >
-                Save Palette
-              </Button>
-            </ValidatorForm>
             <Link to="/">
-              <Button 
+              <Button
+                className={classes.button} 
                 variant="contained" 
                 color="secondary"
               >
                 Go Back
               </Button>
             </Link>
+            <Button
+              className={classes.button} 
+              variant="contained" 
+              color="primary" 
+              onClick={this.showForm}
+            >
+              Save
+            </Button>
           </div>
         </AppBar>
+        {this.state.formOpen &&             
+          <PaletteMetaForm
+            formOpen={this.state.formOpen}
+            palettes={palettes}
+            handleSave={this.props.handleSave}
+            showForm={this.showForm}
+          />
+        }
       </div>
     )
   }

@@ -51,14 +51,11 @@ class PaletteForm extends Component {
     });
   }
 
-  handleSave(newPaletteName) {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      colors: this.state.colors
-    };
+  handleSave(newPalette) {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
-    this.props.history.push("/")
+    this.props.history.push("/");
   }
 
   deleteColorBox(colorName) {
