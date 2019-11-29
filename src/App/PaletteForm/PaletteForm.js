@@ -31,6 +31,7 @@ class PaletteForm extends Component {
     this.deleteColorBox = this.deleteColorBox.bind(this);
     this.clearPalette = this.clearPalette.bind(this);
     this.randomColor = this.randomColor.bind(this);
+    this.checkRandomColor = this.checkRandomColor.bind(this);
   };
 
   handleDrawerOpen = () => {
@@ -78,7 +79,17 @@ class PaletteForm extends Component {
     const allColors = this.props.palettes.map(p => p.colors).flat();
     var rand = Math.floor(Math.random() * allColors.length);
     const randomColor = allColors[rand];
-    this.setState({ colors: [...this.state.colors, randomColor] });
+    return randomColor;
+  }
+
+  checkRandomColor() {
+    const randNumber = this.randomColor();
+    if (this.state.colors.includes(randNumber)) {
+      console.log(randNumber);
+      return this.checkRandomColor();
+    } else {
+      return this.setState({ colors: [...this.state.colors, randNumber] })
+    };
   }
 
   render() {
@@ -126,10 +137,10 @@ class PaletteForm extends Component {
                 className={classes.button} 
                 variant="contained" 
                 color="primary"
-                onClick={this.randomColor}
+                onClick={this.checkRandomColor}
                 disabled={paletteIsFull} 
               >
-                {paletteIsFull ? "Palette Full" : "random Color"}
+                {paletteIsFull ? "Palette Full" : "Random Color"}
               </Button>
             </div>
             <ColorPickerForm 
