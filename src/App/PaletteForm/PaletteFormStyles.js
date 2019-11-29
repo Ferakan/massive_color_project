@@ -15,6 +15,7 @@ const styles = theme => ({
     alignItems: "center"
   },
   drawerHeader: {
+    width: "95%",
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),

@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuIcon from '@material-ui/icons/Menu';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
 
 import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm';
@@ -55,7 +55,7 @@ class PaletteFormNav extends Component {
               edge="start"
               className={classNames(classes.menuButton, open && classes.hide)}
             >
-              <MenuIcon />
+              <AddBoxIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
               Create a Palette
