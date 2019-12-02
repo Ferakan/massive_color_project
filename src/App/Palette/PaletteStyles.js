@@ -1,3 +1,5 @@
+import sizes from "../Utils/mediaQueries";
+
 export default {
   palette: {
     height: "100vh"
@@ -34,6 +36,18 @@ export default {
       textTransform: "uppercase",
       border: "none",
       cursor: "pointer",
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "33.333333333%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "20%",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: "10%",
     }
   },
   paletteFooter: {

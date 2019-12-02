@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import sizes from "../Utils/mediaQueries";
 
 export default {
   colorBox: {
@@ -13,6 +14,21 @@ export default {
     "&:hover button": {
       opacity: 1,
       transition: "0.5s"
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: props => 
+      (props.isFullPalette ? "20%": "33.333333333%"),
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: props => 
+      (props.isFullPalette ? "10%": "20%"),
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: props => 
+      (props.isFullPalette ? "5%": "10%"),
     }
   },
   copyButton: {
@@ -89,13 +105,6 @@ export default {
     transform: "scale(0.1)",
     opacity: "0",
     color: "black",
-  },
-  showMsg: {
-    opacity: 1,
-    transform: "scale(1)",
-    zIndex: "25",
-    transition: "all 0.4s ease-in-out",
-    transitionDelay: "0.3s",
     "& h1": {
       color: props => 
         chroma(props.background).luminance() <= 0.08 ? "white" : "black",
@@ -106,12 +115,23 @@ export default {
       textAlign: "center",
       marginBottom: "0",
       padding: "1rem",
+      textTransform: "uppercase",
+      [sizes.down("xs")]: {
+        fontSize: "6rem"
+      }
     },
     "& p": {
       fontSize: "2rem",
       fontWeight: "100",
       textTransform: "uppercase",
     }
+  },
+  showMsg: {
+    opacity: 1,
+    transform: "scale(1)",
+    zIndex: "25",
+    transition: "all 0.4s ease-in-out",
+    transitionDelay: "0.3s",
   },
   copyText: {
     color: props => 

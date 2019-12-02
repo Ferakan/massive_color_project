@@ -1,3 +1,5 @@
+import sizes from "../Utils/mediaQueries";
+
 export default {
   Navbar: {
     display: "flex",
@@ -16,10 +18,17 @@ export default {
     "& a": {
       textDecoration: "none",
       color: "black",
-    }
+    },
+  },
+  sliderContainer: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    [sizes.down("xs")]: {
+      display: "block",
+    },
   },
   slider: {
-    display: "inline-block",
     width: "340px",
     margin: "0 10px",
     "& .rc-slider-track": {
@@ -38,5 +47,5 @@ export default {
   selectContainer: {
     marginLeft: "auto",
     marginRight: "1rem",
-  }
+  },
 }
