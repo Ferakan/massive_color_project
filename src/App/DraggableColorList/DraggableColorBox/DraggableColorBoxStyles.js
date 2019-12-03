@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import sizes from "../../Utils/mediaQueries";
 
 export default {
   root: {
@@ -12,7 +13,19 @@ export default {
     backgroundColor: props => props.color,
     "&:hover svg": {
       transform: "scale(1.5)"
-    }
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "20%"
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "10%"
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: "5%"
+    },
   },
   boxContent: {
     color: props => 

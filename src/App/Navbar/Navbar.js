@@ -37,14 +37,61 @@ class Navbar extends Component {
     const { format } = this.state;
 
     return (
-      <nav className={classes.Navbar}>
-        <div className={classes.logo}>
-          <Link to="/">reactcolorpicker</Link>
-        </div>
+      <div>
+        <nav className={classes.Navbar}>
+          <div className={classes.logo}>
+            <Link to="/">reactcolorpicker</Link>
+          </div>
+          {showSlider && (
+            <div className={classes.sliderContainer}>
+              <span>Level: {level}</span>
+              <div className={classes.slider}>
+                <Slider 
+                  defaultValue={level} 
+                  min={100} 
+                  max={900} 
+                  step={100} 
+                  onAfterChange={changeLevel} 
+                />
+              </div>
+            </div>
+          )}
+          <div className={classes.selectContainer}>
+            <Select value={format} onChange={this.handleFormatChange}>
+              <MenuItem value="hex">HEX - #1234EF</MenuItem>
+              <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
+              <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+            </Select>
+          </div>
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+            open={this.state.open}
+            autoHideDuration={3000}
+            message={
+              <span id="message-id" >
+                Format Changed to {format.toLocaleUpperCase()}
+              </span>
+            }
+            ContentProps={{
+              "aria-describedby": "message-id"
+            }}
+            onClose={this.closeSnackbar}
+            action={[ 
+              <IconButton 
+                onClick={this.closeSnackbar}
+                color="inherit"
+                key="close"
+                aria-label="close"
+              >
+                <CloseIcon />
+              </IconButton> 
+            ]}
+          />
+        </nav>
         {showSlider && (
-          <div className={classes.sliderContainer}>
+          <div className={classes.sliderSmallContainer}>
             <span>Level: {level}</span>
-            <div className={classes.slider}>
+            <div className={classes.smallSlider}>
               <Slider 
                 defaultValue={level} 
                 min={100} 
@@ -55,38 +102,7 @@ class Navbar extends Component {
             </div>
           </div>
         )}
-        <div className={classes.selectContainer}>
-          <Select value={format} onChange={this.handleFormatChange}>
-            <MenuItem value="hex">HEX - #1234EF</MenuItem>
-            <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
-            <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
-          </Select>
-        </div>
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-          open={this.state.open}
-          autoHideDuration={3000}
-          message={
-            <span id="message-id" >
-              Format Changed to {format.toLocaleUpperCase()}
-            </span>
-          }
-          ContentProps={{
-            "aria-describedby": "message-id"
-          }}
-          onClose={this.closeSnackbar}
-          action={[ 
-            <IconButton 
-              onClick={this.closeSnackbar}
-              color="inherit"
-              key="close"
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton> 
-          ]}
-        />
-      </nav>
+      </div>
     )
   }
 }

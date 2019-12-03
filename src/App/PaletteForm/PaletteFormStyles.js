@@ -1,5 +1,7 @@
 import { DRAWER_WIDTH } from '../Utils/constants';
+import sizes from "../Utils/mediaQueries";
 const drawerWidth = DRAWER_WIDTH;
+
 
 const styles = theme => ({
   root: {
