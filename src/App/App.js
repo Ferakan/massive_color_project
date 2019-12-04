@@ -7,6 +7,8 @@ import PaletteForm from './PaletteForm/PaletteForm';
 import seedPalettes from './Utils/seedPalettes';
 import {generatePalette} from './Utils/colorHelpers';
 
+import "./App.css"
+
 class App extends Component {
   constructor(props) {
     super(props);
