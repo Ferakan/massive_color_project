@@ -7,12 +7,12 @@ import styles from './MiniPaletteStyles';
 class MiniPalette extends Component {
   constructor(props) {
     super(props);
-    this.deletePalette = this.deletePalette.bind(this);
+    this.openDeleteDialog = this.openDeleteDialog.bind(this);
   }
 
-  deletePalette(e) {
+  openDeleteDialog(e) {
     e.stopPropagation();
-    this.props.deletePalette(this.props.id);
+    this.props.openDeleteDialog(this.props.id);
   }
 
   render() {
@@ -29,7 +29,7 @@ class MiniPalette extends Component {
         <div className={classes.delete}>
           <DeleteIcon 
             className={classes.deleteIcon}
-            onClick={this.deletePalette}
+            onClick={this.openDeleteDialog}
           />
         </div>
         <div className={classes.colors}>
