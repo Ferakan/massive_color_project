@@ -58,7 +58,6 @@ class Palette extends Component {
           paletteName={paletteName}
           emoji={emoji}
         />
-
       </div>
     );
   }

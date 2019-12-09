@@ -25,10 +25,11 @@ class PaletteList extends Component {
     }
     this.toggleDialog = this.toggleDialog.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.goToPalettes = this.goToPalettes.bind(this);
   }
 
   goToPalettes(id) {
-    this.props.history.push(`/palette/${id}`)
+    this.props.history.push(`/palette/${id}`);
   }
 
   toggleDialog(id) {
@@ -65,7 +66,7 @@ class PaletteList extends Component {
               >
                 <MiniPalette 
                   {...palette}
-                  handleClick={() => this.goToPalettes(palette.id)} 
+                  goToPalettes={this.goToPalettes} 
                   openDeleteDialog={this.toggleDialog}
                   key={palette.id} 
                   id={palette.id}  

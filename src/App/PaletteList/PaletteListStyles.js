@@ -4,11 +4,10 @@ import bg from '../Utils/Backgrounds/bg.svg';
 export default {
   "@global": {
     ".fade-exit": {
-
     },
     ".fade-exit-active": {
       opacity: 0,
-      transition: "opacity 500ms ease-out"
+      transition: "opacity 0.5s ease-out"
     }
   },
   root: {
@@ -17,7 +16,7 @@ export default {
     alignItems: "flex-start",
     justifyContent: "center",
     /* background by SVGBackgrounds.com */
-    backgroundColor: "#ffffff",
+    backgroundColor: "#4677c7",
     backgroundImage: `url(${bg})`,
     overflow: "auto"
   },
