@@ -1,5 +1,5 @@
 import { DRAWER_WIDTH } from '../Utils/constants';
-// import sizes from "../Utils/mediaQueries";
+import sizes from "../Utils/mediaQueries";
 const drawerWidth = DRAWER_WIDTH;
 
 
@@ -14,7 +14,10 @@ const styles = theme => ({
   drawerPaper: {
     display: "flex",
     width: drawerWidth,
-    alignItems: "center"
+    alignItems: "center",
+    [sizes.down("sm")]: {
+      width: "100%"
+    },
   },
   drawerHeader: {
     width: "95%",
@@ -41,12 +44,14 @@ const styles = theme => ({
     marginLeft: 0,
   },
   container: {
-    width: "90%",
     height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    [sizes.up("sm")]: {
+      width: "90%"
+    },
   },
   buttons: {
     width: "100%"

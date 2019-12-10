@@ -36,11 +36,12 @@ const styles = theme => ({
     },
     [sizes.down("xs")]: {
       marginRight: "0.5rem",
-    }
+    },
   },
   button: {
     margin: "0 0.5rem",
-    [sizes.down("xs")]: {
+    [sizes.down("md")]: {
+      fontSize: "12px",
       margin: "0.1rem",
     }
   },
