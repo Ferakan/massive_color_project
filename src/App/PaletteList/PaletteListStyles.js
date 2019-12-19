@@ -46,9 +46,40 @@ export default {
     color: "#111",
     fontWeight: "700",
     fontSize: "1.7rem",
+    [sizes.down("md")]: {
+      flexDirection: "column",
+      marginBottom: "2rem"
+    },
+  },
+  title: {
+    fontFamily: "'Pacifico', cursive",
+    fontSize: "4.5rem",
+    color: "#111",
+    margin: "1rem 0",
+    [sizes.down("md")]: {
+      textAlign: "center"
+    },
+    [sizes.down("xs")]: {
+      fontSize: "4rem"
+    },
+  },
+  letterR: {
+    color: "#cd2b2c"
+  },
+  letterC: {
+    color: "#45c932"
+  },
+  letterP: {
+    color: "#2fa5d8"
+  },
+  createBtn: {
+    backgroundColor: "#2fa5d8",
     "& a": {
-      color: "#111",
-      fontSize: "1.1rem",
+      textDecoration: "none",
+      color: "#eee"
+    },
+    "&:hover": {
+      backgroundColor: "#1e698c",
     }
   },
   palette: {

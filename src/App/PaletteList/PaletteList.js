@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Button from "@material-ui/core/Button";
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { blue, red } from '@material-ui/core/colors';
@@ -52,10 +53,17 @@ class PaletteList extends Component {
       <div className={classes.root}>
         <div className={classes.container}>
           <nav className={classes.nav}>
-            <h1>React Colors</h1>
-            <Link to="/palette/new">
-              Create Palette
-            </Link>
+            <h1 className={classes.title}>
+              <span className={classes.letterR}>R</span>eact <span className={classes.letterC}>C</span>olor <span className={classes.letterP}>P</span>icker
+            </h1>
+            <Button 
+              className={classes.createBtn}
+              variant="contained"
+            >
+              <Link to="/palette/new">
+                Create Palette
+              </Link>
+            </Button>
           </nav>
           <TransitionGroup className={classes.palette}>
             { palettes.map(palette => (
