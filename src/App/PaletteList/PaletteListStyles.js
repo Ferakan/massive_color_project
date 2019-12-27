@@ -53,7 +53,7 @@ export default {
   },
   title: {
     fontFamily: "'Pacifico', cursive",
-    fontSize: "4.5rem",
+    fontSize: "3.5rem",
     color: "#111",
     margin: "1rem 0",
     [sizes.down("md")]: {
